@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<div id="image">
+<%= image_tag @garden.g_image.url %>
+</div>
+<p id="description"><%= @garden.description %></p>
+
+<p id ="admin"><%= link_to 'Edit', edit_garden_path(@garden) %></p>
+<p><%= link_to 'Back', gardens_path %></p>
+
+<% @garden.comments.each do |comment| %>
+	<div id ="comment">
+	<p><%= comment.user_id %>
+	<%= comment.created_at %>
+	<div id="admin"><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></div></p>
+	<p><%= comment.comment %></p>
+	</div>
+<% end %>
+<p></p>
+<% if current_user %>
+	<p id="comment_form">
+	<%= form_for @comment do |f| %>
+	  <%= f.hidden_field :user_id %>
+	  <%= f.hidden_field :garden_id %>
+	  <%= f.text_area :comment %>
+	  <%= submit_tag "Post comment" %>
+	<% end %>
+<% else %>
+	<div id="to_login">
+  Please <%= link_to 'Login', '/login' %> or <%= link_to 'Signup', '/signup' %> to comment.
+  </div>
+<% end %>
+
+</p>

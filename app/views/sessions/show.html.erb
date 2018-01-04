@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @session.name %>
+</p>
+
+<p>
+  <strong>Password digest:</strong>
+  <%= @session.password_digest %>
+</p>
+
+<p>
+  <strong>Confirm password digest:</strong>
+  <%= @session.confirm_password_digest %>
+</p>
+
+<%= link_to 'Edit', edit_session_path(@session) %> |
+<%= link_to 'Back', sessions_path %>
